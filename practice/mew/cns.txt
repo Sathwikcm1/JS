@@ -1,0 +1,207 @@
+PKI Architecture Model: Public Key Infrastructure
+
+A framework used to manage and distribute digital certificate for secure communication. 
+A digital certificate is proof for owning a public key.
+
+Certificate Authority: The core responsible for issuing and verifying digital certificates. 
+Ensures the authenticity of the public keys by signing certificate.
+
+Registration Authority: Acts as a mediator between users and CA.
+
+Certificate Repository: A database or directory service where certificates and public keys are stored for user access.
+
+Digital Certificates: Contains public keys, identity details and is signed by the CA to establish trust.
+
+Public/Private Keys: 
+Public keys : Shared openly for encryption or signature verification.
+Private keys: kept secret for decryption or signing data.
+
+Certificate Revocation List: 
+A list maintained by the CA to identify invalid or revoked certificate.
+
+End Entities: 
+  Users or systems that use PKI for secure communication encryption or authentication.
+
+
+
+Workflow: 
+1. Key-Pair generation: End entities public-private key generation. 
+2. Certificate Request: The user sends a request to the RA/CA for a certificate.
+3. Identity verification: RA verifies the user's identity and forward the request to the CA.
+4. Certificate Issuance : CA issues the certificate and signs it with its private keys.
+5. Certificate Distribute: User receives the certificate and can share it publicly. 
+6. Certificate Validation: Validate the certificate by checking CA's signature and revocation status.
+
+
+
+2. 
+Kerberos: 
+A Trusted Third party authentication protocol developed at MIT under project Athena. It is one of the most widely used systems for securing authentication in distributed networks.
+
+Functionality: The primary function of kerberos is to provide a centralized authentication server. This server authenticates users to servers and vice-versa.
+
+Encryption methods: Unlike many other authentication systems that utilize public key encryption, kerberos relies solely on symmetric key encryption. This means that the same key is used to both encryption and decryption.
+Which simplifies the authentication process
+
+Versions: There are two main versions of kerberos 
+Version 4 and version 5. Each has it's own features and improvements over the previous one. But both serve the same fundamental purpose of secure authentication.
+
+User Identity verification: 
+In environments where network connections to other other machines are supported, Kerberos requires users to prove their identity for each service they access.
+Adding an additional layer of security, ensuring that only authenticated users can access specific resources.
+
+
+
+
+
+4. Digital certificate: 
+A digital certificate is an electronic document used to prove the ownership of a public key.
+It is issued by trusted entity known as certificate Authority(CA) and binds the public keys to the identify of the individual, organization or device.
+
+Components of Digital Certificate: 
+*) Owner's information: 
+Name, email, or domain name of the certificate holder.
+
+*) public key: The key associated with the owner for encryption and authentication.
+
+*) Certificate Authority information: 
+Name and details of the CA issuing the certificate.
+
+*) Serial number: A unique for the certificate.
+
+*) Digital Signature: The CA's digital signature , ensuring the certificate authenticity.
+
+*) Certificate version: specifies the x.509 version.
+
+
+
+
+
+8. User Authentication: 
+The process of verifying the identify of a user attempting to access a system, application, or network. It ensures that only authorized users can access resources.
+
+Key methods of user authentication:
+1. Knowledge based: Password, PINs or Security question.
+2. Possession based: Smart-cards, tokens, OTPs
+3. Biometric based: Fingerprints, facial recognition, voice recognition.
+4. Location based: Access granted based on geographic location or IP address.
+
+Types of authentication: 
+1. Single-Factor Authentication : Relies on one method (ex: password)
+2. Two-Factor Authentication: combines two methods (ex: password+OTP)
+3. Multi-Factor Authentication: Uses multiple factors for enhanced security.
+
+
+
+
+3. Difference between version 4 and version 5 kerberos.
+
+1.Encryption system dependence: 
+version 4: requires the use of DES for encryption. 
+version 5: requires any encryption technique by tagging cyphertext with an encryption type identifier making it more flexible.
+
+
+2. Internet Protocol Dependency: 
+version 4: requires the use of internet protocol addresses.
+version 5: supports various network address types by tagging addresses with type and length.
+
+3. Message byte Ordering: 
+version 4: Uses a non standard byte ordering method, which can lead to ambiguity. 
+version 5: defines all messages structures using abstract syntax notation.
+
+4. Ticket Lifetime:
+version 4: Encodes lifetime values in an 8-bit quantity, limiting the maximum ticket lifetime to about 21 hours. 
+version 5: allows tickets to include explicit start and end times, enabling arbitrary lifetimes.
+
+5. Authentication Forwarding:
+version 4: Does not allow credentials issued to one client to be forwarded to another host.
+version 5: supports credentials forwarding.
+
+
+Technical Deficiencies in kerberos version 4: 
+1. Double encryption: Tickets provided to clients are encrypted twice.
+which is computationally wasteful and unnecessary.
+2. PCBC encryption: version 4 uses a nonstandard mode of DES known as propagating cipher block chaining, which is vulnerable to attacks.
+3. Session Keys: Each ticket includes a session key, but the same ticket can be used repeatedly, leading to potential replay attacks. 
+
+
+
+
+3) 
+X.509 formats: 
+version
+certificate serial number
+signature identifier algorithm
+issuer name
+period of validity : not before and not after
+subject name
+subject public keys: key, algo, params
+issuer unique identifier
+subject unique identifier
+extensions
+signature
+
+
+
+Module 5:
+1) Internet key exchange: 
+   A secure way to exchange the cryptographic keys over the Internet.
+  It ensures that data transmitted over a network is protected through encryption and integrity verification.
+
+Features of IKE: 
+1) Mutual Authentication: Both parties authenticate each other using methods like pre-shared keys, digital certificates or public keys.
+
+2) Secure key Exchange: Uses the Diffie-Hellman key exchange algorithm to securely establish shared secret keys.
+
+3) Session key derivation: Generates unique session keys for encryption and integrity protection of the communication.
+
+4) Perfect Forward Secrecy: Ensures that session keys cannot be compromised, even if long term keys are exposed.
+
+5) Key lifetime: defines the period of validity for the keys. 
+
+6) Scalability: Facilitates large scale networks by automating the process of engineering.
+
+
+Phases of IKE: 
+1) Phase 1: Establishes a secure communication channel using either main mode or aggressive modes.
+2) Phase 2: Negotiates and establishes the session keys for data encryption and integrity using the secure channel.
+
+
+
+2) Pretty good privacy : PGP
+A widely used encryption program that provides cryptographic privacy and Authentication for data communication.
+
+It combines multiple cryptographic techniques to ensure data security.
+
+Functions: 
+1) encryption: 
+    *) Symmetric encryption : PGP uses a Symmetric encryption algo to encrypt the actual message.
+    A session key is generated for each message and is used for this encryption.
+    *) Asymmetric encryption: 
+    The session key is encrypted using the recipient's public key.
+    This ensures that only the recipient can decrypt the session key using their private key.
+
+2) Digital Signatures: 
+  PGP provides Authentication and integrity by digitally signing the messages
+
+3) compression: before encryption, PGP compresses the plaintext message to save space and improve transmission speed.
+compression also adds security by reducing redundancy in the plain text.
+
+4) Key management: PGP uses a combination of symmetric and asymmetric encryption to manage keys efficiently.
+
+5) Integrity Protection: 
+  Hash functions ensure that any tampering with message during transmission is detectable.
+
+
+Working 
+1) Sender: 
+  *) Compresses the message. 
+  *) Encrypts the message with a session key. 
+  *) Encrypts the session key with recipient's public key.
+  *)  Adds a digital signature using their private key.
+
+2) recipient: 
+  *) Decrypts the session key using their private key. 
+  *) Decrypts the message using the session key.
+  *) verifies the sender's identifier
+

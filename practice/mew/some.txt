@@ -1,0 +1,111 @@
+1. Key Differences Summary
+Feature	Active RFID	Passive RFID
+Power Source	Internal battery	Powered by RFID reader
+Range	Long (up to 100+ meters)	Short (a few centimeters to meters)
+Cost	Expensive	Cheaper
+Size	Larger	Smaller
+Applications	Real-time asset tracking	Inventory, access control
+Examples	Vehicle tracking, container monitoring	Retail tags, office access cards
+
+
+
+CoAP : constrained application protocol designed for resource constrained devices in networks such as internet of things.
+  it is based on the principles of the HTTP protocol but it is optimized for low-power, low-bandwidth environments.
+
+Overview : 
+  CoAP is designed to work with environments where devices have limited resources processing power and bandwidth .
+
+  Features: 
+*) Light weight and simple:: easy to implement on devices with limited resources.
+*) Request-Response Model : Similar to HTTP, CoAP uses a request response model for communication between clients and servers.
+*) UDP-based: CoAP typically uses User datagram protocol UDP for transport of TCP, which reduces overhead and latency but does not guarentee reliable delivery. However it includes reliablility Featuresat the application layer to compensate.
+
+communication process of CoAP:
+there are four types of messages for communication:
+1. confirmable: This message requires an acknowledment from the receiver. if the acknowledgment is not received, the message is retransmitted.
+2. Non-confirmable: There is no acknowledment here in this type.
+It's used for situations where acknowledgment is not necessary.
+3. Acknowledgment: used to confirm receipt of a confirmable message.
+4. Reset: indicates that a message couldn't be processed.
+
+working of CoAP messages: 
+request: a client sends a CoAP request to server. The request is similar to HTTP request and is typically a GET, POST, PUT, DELETE  methods, indicating what operation the client wants to perform on a resource
+
+response: The server processes the request and sends the CoAP response back to the client. The response contains the requested resource data or an error message if the operation was unsuccessful.
+
+Message structure: it contains three components header, token, payload.
+Header: contains information like message type, message ID , token and response code.
+Token:  A unique identifier used by the server to match the requests with the response.
+Payload: The actual data being sent, such as resource values or command results.
+Options: These provides additional information such as URL,content format, or Max-age for the message.
+
+5. CoAP Methods: There are four methods just like in HTTP one for CRUD operations:
+Get: Requests the values of a resources.
+POST: submits data to a resource, usually to create or update it.
+PUT: updates the value of resource.
+DELETE: removes a resource.
+
+
+
+What is Pub-Sub? 
+It is a messaging pattern used in distributed systems, where message producers send messages to message consumers without needing to know about each other. 
+The publisher-subscriber are decoupled, meaning they don't directly communicate with one another. Instead, they interact through a message broker or messaging system.
+
+Working of pub-sub: 
+Publisher: is responsible for producing messages. It sends messages to a central message broker, which is responsible for routing the messages to the appropriate subscribers.
+A publisher doesn't need to know how many subscribers there are or who they are.
+Publisher typically send messages on specific topic or channels , which act as identifies for the type of message being sent.
+
+
+Subscriber: 
+The subscriber listens to a topic or channel that interest them. It register its interest in one or more topics with broker.
+A subscriber doesn't need to know the identity or the number of publishers. It just receives message for topics it is subscribed to.
+Once subscribed, the subscriber can receive updates in real-time as new messages are published on the topics of interest.
+
+Broker: 
+The broker is the central component in a Pub-Sub system.
+It acts as an intermediary between publisher and subscriber.
+
+
+Advantages of Pub-Sub: 
+*) decoupling of Publishers and subscribers.
+*) Asynchronous communication.
+*) Scalability.
+*) Real-time data delivery.
+
+Disadvantages: 
+*) Message Loss.
+*) Complexity.
+*) Overhead.
+*) Lack of Ordering.
+
+
+
+LOADng (Light weight on-demand Ad hoc distance-vector Routing protocol- Next Generation)
+A routing protocol designed for low power and lossy networks such as those found in internet of things applications. It is an extension of LOAD (lightweight on demand ad-hoc distance-vector) protocol, Optimized to improve scalability, flexibility, and performance in resource constrained networks.
+
+Routing Approach: 
+LOADng is designed to work in networks with limited power, processing capacity, and bandwidth.
+These networks are often characterized by frequent topology changes, lossy links, and low node density, making routing more challenging.
+
+On-demand routing: meaning that routes are created only when they are needed, rather than maintaining active routes all times. This reduces the overhead on the network and minimizes the resource consumption.
+
+Distance-vector: It uses a distance-vector approach, where each node periodically updates it's knowledge about the distance to other nodes in the network. These distance vectors are used to make routing decisions.
+
+Hop-by-Hop Routing: The routing is done on a Hop-by-Hop basis, with each node forwarding packets based on its routing table. This helps ensuring that the network can scale to larger sizes and accommodate frequent topology changes.
+
+Features: 
+*) Scalability : large number of nodes , efficient work.
+*) Low overhead: the protocol minimizes the control message overhead by only sending routing information when necessary.
+
+Protocol message types: 
+RREQ(Route Request): Used to initiate the route discovery process by requesting a path to a destination.
+RREP(Route reply): Sent by the destination node to respond to a RREQ with a route.
+RERR(Route Error): Sent to notify that a route has become invalid or broken.
+RUP(Route update): Send to update neighbours with new routing information.
+
+
+
+Advantages: efficient for IOT networks, Dynamic and flexible, on-demand routing.
+
+
