@@ -25,6 +25,17 @@
         computerMove = 'scissors';
       }
       console.log(computerMove);
+
+      let result = '';
+      if (computerMove === 'Scissors') {
+        result = 'tie';
+      }else if (computerMove === 'Rock') {
+        result = 'You Loose';
+      }else {
+        result = 'You Win!';
+      }
+
+      alert(`You picked Scissors. Computer Picked ${computerMove}. ${result}.`);
     ">Rock</button>
     <button onclick="
       const randomNumber = Math.random();
@@ -37,6 +48,17 @@
         computerMove = 'scissors';
       }
       console.log(computerMove);
+      
+      let result = '';
+      if (computerMove === 'Scissors') {
+        result = 'tie';
+      }else if (computerMove === 'Rock') {
+        result = 'You Loose';
+      }else {
+        result = 'You Win!';
+      }
+
+      alert(`You picked Scissors. Computer Picked ${computerMove}. ${result}.`);
     ">Paper</button>
     <button onclick="
       const randomNumber = Math.random();
@@ -58,7 +80,7 @@
         result = 'You Win!';
       }
 
-      alert(`You picked Scissors. Computer Picked ${computerMove}. You ${result}.);
+      alert(`You picked Scissors. Computer Picked ${computerMove}. ${result}.`);
     ">Scissors</button>
     <script>
       // You can add additional JavaScript here if needed
